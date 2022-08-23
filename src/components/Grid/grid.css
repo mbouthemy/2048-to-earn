@@ -1,0 +1,18 @@
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #bbada0;
+  border: 8px solid #bbada0;
+  border-radius: 6px;
+
+
+}
+
+.grid-cell {
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  border-radius: 4px;
+  background: rgba(238, 228, 218, 0.35);
+}

@@ -3,7 +3,7 @@ import { BoardProvider } from "./context/BoardContext";
 import { boardMargin, tileCount as defaultTileCount } from "./models/Board";
 import { Grid } from "../Grid";
 import { TileMeta, tileTotalWidth, Tile } from "../Tile";
-import "./board.less";
+import "./board.css";
 
 type Props = {
   tiles: TileMeta[];

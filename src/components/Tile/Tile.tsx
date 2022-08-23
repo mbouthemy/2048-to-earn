@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import invariant from "tiny-invariant";
 import { usePrevProps } from "../../hooks/usePrevProps";
 import { useBoard } from "../Board";
-import "./tile.less";
+import "./tile.css";
 
 type Props = {
   // tile value - 2, 4, 8, 16, 32, ..., 2048.∂

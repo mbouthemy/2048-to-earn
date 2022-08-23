@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "./components/Button";
 import { Game } from "./components/Game";
 
-import "./App.less";
+import "./App.css";
 
 /* eslint-disable react/jsx-no-target-blank */
 export const App = () => {

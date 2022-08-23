@@ -1,5 +1,5 @@
 import React from "react";
-import "./button.less";
+import "./button.css";
 
 type Props = {
   children: any;

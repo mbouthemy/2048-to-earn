@@ -1,4 +1,4 @@
-import "./index.less";
+import "./index.css";
 
 /**
  * The pixel size of the grid.

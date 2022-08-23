@@ -1,7 +1,7 @@
 import React from "react";
 import { useBoard } from "../Board";
 
-import "./grid.less";
+import "./grid.css";
 
 export const Grid = () => {
   const [, tileCount] = useBoard();
