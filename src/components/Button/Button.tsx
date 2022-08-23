@@ -1,5 +1,6 @@
 import React from "react";
-import "./button.css";
+import styles from './button.module.css';
+
 
 type Props = {
   children: any;
@@ -8,7 +9,7 @@ type Props = {
 
 export const Button = ({ children, onClick }: Props) => {
   return (
-    <button className="button" onClick={onClick}>
+    <button className={styles.button} onClick={onClick}>
       {children}
     </button>
   );

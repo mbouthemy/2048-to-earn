@@ -5,11 +5,9 @@
   background-color: #bbada0;
   border: 8px solid #bbada0;
   border-radius: 6px;
-
-
 }
 
-.grid-cell {
+.gridCell {
   width: 100px;
   height: 100px;
   margin: 8px;

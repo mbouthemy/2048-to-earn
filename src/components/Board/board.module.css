@@ -3,7 +3,7 @@
   position: relative;
 }
 
-.tile-container {
+.tileContainer {
   position: absolute;
   z-index: 2;
   margin: 8px;

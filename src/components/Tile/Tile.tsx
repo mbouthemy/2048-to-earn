@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import invariant from "tiny-invariant";
 import { usePrevProps } from "../../hooks/usePrevProps";
 import { useBoard } from "../Board";
-import "./tile.css";
+import styles from "./tile.module.css";
 
 type Props = {
   // tile value - 2, 4, 8, 16, 32, ..., 2048.∂
@@ -57,8 +57,11 @@ export const Tile = ({ value, position, zIndex }: Props) => {
     zIndex,
   };
 
+
+  const dynamicTileCSS = styles[`tile${value}`];
+
   return (
-    <div className={`tile tile-${value}`} style={style}>
+    <div className={`${styles.tile} ${dynamicTileCSS}`} style={style}>
       {value}
     </div>
   );

@@ -1,11 +1,10 @@
+import type { NextPage } from "next";
 import React, { useState } from "react";
-import { Button } from "./components/Button";
-import { Game } from "./components/Game";
+import { Button } from "../components/Button";
+import { Game } from "../components/Game";
 
-import "./App.css";
 
-/* eslint-disable react/jsx-no-target-blank */
-export const App = () => {
+const Home: NextPage = () => {
   const [date, setDate] = useState<Date>(new Date());
 
   const handleRestart = () => {
@@ -70,4 +69,5 @@ export const App = () => {
     </div>
   );
 };
-/* eslint-enable react/jsx-no-target-blank */
+
+export default Home;

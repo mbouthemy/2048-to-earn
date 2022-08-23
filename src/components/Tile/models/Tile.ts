@@ -1,4 +1,4 @@
-import { pixelSize } from "../../../styles";
+import { pixelSize } from "../../../constants";
 
 export type TileMeta = {
   id: number;

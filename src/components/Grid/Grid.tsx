@@ -1,7 +1,8 @@
 import React from "react";
 import { useBoard } from "../Board";
 
-import "./grid.css";
+import styles from './grid.module.css';
+
 
 export const Grid = () => {
   const [, tileCount] = useBoard();
@@ -11,11 +12,11 @@ export const Grid = () => {
     const cells = [] as JSX.Element[];
 
     for (let index = 0; index < length; index += 1) {
-      cells.push(<div key={`${index}`} className={`grid-cell`} />);
+      cells.push(<div key={`${index}`} className={styles.gridCell} />);
     }
 
     return cells;
   };
 
-  return <div className="grid">{renderGrid()}</div>;
+  return <div className={styles.grid}>{renderGrid()}</div>;
 };

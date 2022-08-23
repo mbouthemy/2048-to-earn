@@ -1,4 +1,4 @@
-import { pixelSize } from "../../../styles";
+import { pixelSize } from "../../../constants";
 
 /**
  * The number of tiles per row and column.
