@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "next": "^12.2.2",
+    "play2earn": "^0.0.3",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
     "react-dom": "^17.0.2",
@@ -22,7 +23,8 @@
     "@types/react-dom": "^17.0.0",
     "gh-pages": "^3.2.3",
     "react-scripts": "4.0.3",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "next-transpile-modules": "^8.0.0"
   },
   "scripts": {
     "dev": "next dev",

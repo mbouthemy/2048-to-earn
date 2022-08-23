@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "../components/Button";
 import { Game } from "../components/Game";
 import Countdown, { zeroPad} from 'react-countdown';
+import { Play2EarnModal } from "play2earn";
 
 
 interface IPropsRenderer {
@@ -44,6 +45,10 @@ const Home: NextPage = () => {
       console.log('Game ID is finished');
   }
 
+  const handleGameStarting = () => {
+    console.log('Start the game');
+  }
+
   return (
     <div className="App">
       <div className="header">
@@ -70,6 +75,13 @@ const Home: NextPage = () => {
           from it.
         </p>
       </div>
+      <Play2EarnModal gameWebsiteHost={process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.com'} 
+                                        gameID={date.toISOString()}
+                                        playerUID={'player1'} 
+                                        handleGameStarting={() => handleGameStarting()}
+                                        gameType="solo"
+                                        blockchainType="solana"
+                                        amountBet={0.1}/>
       <Button onClick={handleStartGame}>Start Game</Button>
 
       <Button onClick={handleRestart}>Restart</Button>
