@@ -4,8 +4,22 @@ import { useThrottledCallback } from "use-debounce";
 import { useGame } from "./hooks/useGame";
 import { Board, animationDuration, tileCount } from "../Board";
 
-export const Game = () => {
+interface IProps {
+  handleWinGame: any;
+}
+
+export const Game = ({handleWinGame}: IProps) => {
   const [tiles, moveLeft, moveRight, moveUp, moveDown] = useGame();
+
+  /**
+   * Check if the Winning Tile is present in the pile of tiles.
+   */
+  useEffect(() => {
+    if (tiles.some(t => t.value === 16)) {
+        console.log('Game Finished');
+        handleWinGame();
+    }
+  }, [handleWinGame, tiles])
 
   const handleKeyDown = (e: KeyboardEvent) => {
     // disables page scrolling with keyboard arrows
