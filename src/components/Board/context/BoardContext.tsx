@@ -1,5 +1,5 @@
 import React from "react";
-import { tileCount as defaultTileCount } from "../index";
+import { tileCount as defaultTileCount } from "../models/Board";
 
 export const BoardContext = React.createContext({
   containerWidth: 0,
