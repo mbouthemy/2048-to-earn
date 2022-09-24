@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "../components/Button";
 import { Game } from "../components/Game";
 import Countdown, { zeroPad} from 'react-countdown';
-import { Play2EarnModal } from "play2earn";
+import { finishGameAndGetMoneyWebThree, Play2EarnModal } from "play2earn";
 
 
 interface IPropsRenderer {
@@ -13,40 +13,59 @@ interface IPropsRenderer {
     completed: boolean;
 }
 
+/**
+ * The home page for the creation of the game.
+ * Note that the ID of the game is given by the date creation as ISO string.
+ */
 const Home: NextPage = () => {
   const [date, setDate] = useState<Date>(new Date());
   const [isCountdownStarted, setIsCountdownStarted] = useState<boolean>(false);
 
   const handleRestart = () => {
     setDate(new Date());
+    console.log('Game ID', )
   };
 
-  const handleStartGame = () => {
-    setDate(new Date());
-    setIsCountdownStarted(true);
+
+  const testGameIDCreation = () => {
+    console.log('Game ID', new Date().toISOString());
+
   }
 
   const handleOnComplete = () => {
       // GameOver; the game is finished
-      console.log('You have lost!')
+      console.log('You have lost!');
+  }
+
+  const handleSimulateLosing = () => {
+    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.web-2-to-3.com', date.toISOString(), 'game_master', 'game_master', false)
+    .then(resultSignature => {
+        console.log('The money has been transferred to your account, the signature is: ', resultSignature);
+    });
+
   }
 
   // Renderer callback with condition
-    const renderer = ({ hours, minutes, seconds, completed }: IPropsRenderer) => {
-        if (completed) {
-        // Render a completed state
-        return  <span>Game Over!</span>;;
-        } else {
-        return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>;
-        }
-    };
+  const renderer = ({ hours, minutes, seconds, completed }: IPropsRenderer) => {
+      if (completed) {
+      // Render a completed state
+      return  <span>Game Over!</span>;;
+      } else {
+      return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>;
+      }
+  }
   
   const handleWinGame = () => {
       console.log('Game ID is finished');
   }
 
+  /**
+   * Handle the start of the game.
+   * Can be simulated if needed.
+   */
   const handleGameStarting = () => {
     console.log('Start the game');
+    setIsCountdownStarted(true);
   }
 
   return (
@@ -82,18 +101,14 @@ const Home: NextPage = () => {
                                         gameType="solo"
                                         blockchainType="solana"
                                         amountBet={0.1}/>
-      <Button onClick={handleStartGame}>Start Game</Button>
+      <Button onClick={handleGameStarting}>Start Game</Button>
 
       <Button onClick={handleRestart}>Restart</Button>
+      <Button onClick={handleSimulateLosing}>Simulate Losing</Button>
+      <Button onClick={testGameIDCreation}>Test Game Creation</Button>
 
       <div className="footer">
-        Made with ❤️ by{" "}
-        <a
-          href="https://www.youtube.com/channel/UCJV16_5c4A0amyBZSI4yP6A"
-          target="_blank"
-        >
-          Matt Sokola
-        </a>
+        Copyrights 2022 - 2048 To Earn
       </div>
     </div>
   );
