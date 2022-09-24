@@ -3,6 +3,7 @@ import { useThrottledCallback } from "use-debounce";
 
 import { useGame } from "./hooks/useGame";
 import { Board, animationDuration, tileCount } from "../Board";
+import { TILE_VALUE_TO_WIN } from "../../constants";
 
 interface IProps {
   handleWinGame: any;
@@ -15,7 +16,7 @@ export const Game = ({handleWinGame}: IProps) => {
    * Check if the Winning Tile is present in the pile of tiles.
    */
   useEffect(() => {
-    if (tiles.some(t => t.value === 16)) {
+    if (tiles.some(t => t.value === TILE_VALUE_TO_WIN)) {
         console.log('Game Finished');
         handleWinGame();
     }

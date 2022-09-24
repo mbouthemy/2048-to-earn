@@ -8,6 +8,7 @@ import { Board } from "../components/Board";
 import { TileMeta } from "../components/Tile";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TIME_SECONDS_TO_FINISH_GAME } from "../constants";
 
 interface IPropsRenderer {
   hours: number;
@@ -22,7 +23,9 @@ interface IPropsRenderer {
  */
 const Home: NextPage = () => {
   const [date, setDate] = useState<Date>(new Date());
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
+
+  // Tell if the user is playing the game
+  const [gameStatus, setGameStatus] = useState<string>("not_started");
   const [isCountdownStarted, setIsCountdownStarted] = useState<boolean>(false);
 
   const defaultTilesBegin: TileMeta[] = [
@@ -35,15 +38,12 @@ const Home: NextPage = () => {
     console.log('Game ID',)
   };
 
-  const testToast = () => {
-    toast.success('hello');
-  }
-
   /**
    * The user has won the game, the money is transferred on the backend.
    * The signature is also displayed to the frontend.
    */
   const handleWinGame = () => {
+    setGameStatus("game_won");
     toast.success("Congratulation for winning, wait a bit until the money is transferred to your account", {
       autoClose: 10000,
       hideProgressBar: true,
@@ -67,6 +67,7 @@ const Home: NextPage = () => {
    */
   const handleOnComplete = () => {
     console.log('You have lost!');
+    setGameStatus("game_lost");
     toast.warning("Unfortunately you didn't win this type, reload the page to try again!")
     finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.web-2-to-3.com', date.toISOString(), 'game_master', 'game_master', false)
       .then(resultSignature => {
@@ -92,10 +93,32 @@ const Home: NextPage = () => {
    * Can be simulated if needed.
    */
   const handleGameStarting = () => {
-    console.log('Start the game');
     toast("Betting worked! Game is starting, good luck!")
-    setIsGameStarted(true);  // Switch to dynamic board
+    setGameStatus("started");  // Switch to dynamic board
     setIsCountdownStarted(true);
+  }
+
+  /**
+   * Render the main display based on the gameStatus.
+   */
+  const renderMainDisplay = (_gameStatus: string) => {
+    if (_gameStatus === 'not_started') {
+      return (
+        <Board tiles={defaultTilesBegin} tileCountPerRow={4} />
+      )
+    } else if (_gameStatus === 'started') {
+      return (
+        <Game key={date.toISOString()} handleWinGame={() => handleWinGame()} />
+      )
+    } else if (_gameStatus === 'game_won') {
+      return (
+        <p>Game Won ! </p>
+      )
+    } else if (_gameStatus === 'game_lost') {
+      return (
+        <p>Game Lost ! You can reload the page </p>
+      )
+    }
   }
 
   return (
@@ -109,7 +132,7 @@ const Home: NextPage = () => {
         <b>2048 To Earn</b> is a play2earn where you can win Solana if you manage to beat the game within 20 seconds.
           You first need to connect a Solana wallet and wage the amount of SOL. The game is currently only available on Devnet.
       </p>
-      {!isGameStarted &&
+      {gameStatus === "not_started" &&
         <Play2EarnModal gameWebsiteHost={process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.com'}
           gameID={date.toISOString()}
           playerUID={'player1'}
@@ -119,20 +142,17 @@ const Home: NextPage = () => {
           amountBet={0.1} />
       }
 
-      {isCountdownStarted &&
-        <Countdown date={Date.now() + 5000}
+      {isCountdownStarted && gameStatus === 'started' &&
+        <Countdown date={Date.now() + TIME_SECONDS_TO_FINISH_GAME}
           renderer={renderer}
           onComplete={() => handleOnComplete()}
         />
       }
-      {isGameStarted ?
-        <Game key={date.toISOString()} handleWinGame={() => handleWinGame()} /> :
-        <Board tiles={defaultTilesBegin} tileCountPerRow={4} />
-      }
-      <Button onClick={handleGameStarting}>Start Game</Button>
+      {renderMainDisplay(gameStatus)}
 
-      <Button onClick={handleRestart}>Restart</Button>
-      <Button onClick={handleOnComplete}>Simulate Losing</Button>
+      {/* Keep those buttons to test and debug. */}
+      {/* <Button onClick={handleGameStarting}>Start Game</Button>
+      <Button onClick={handleRestart}>Restart</Button> */}
 
       <ToastContainer />
       <div className="footer">
