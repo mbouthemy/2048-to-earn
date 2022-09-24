@@ -5,10 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "next": "^12.2.2",
-    "play2earn": "^0.0.5",
+    "play2earn": "^0.0.7",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
     "react-dom": "^17.0.2",
+    "react-toastify": "^9.0.8",
     "tiny-invariant": "^1.1.0",
     "use-debounce": "^7.0.0",
     "web-vitals": "^1.0.1"
@@ -22,9 +23,9 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "gh-pages": "^3.2.3",
+    "next-transpile-modules": "^8.0.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "next-transpile-modules": "^8.0.0"
+    "typescript": "^4.1.2"
   },
   "scripts": {
     "dev": "next dev",
