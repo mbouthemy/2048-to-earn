@@ -20,8 +20,8 @@ export default function initWagerHandler(
         body: JSON.stringify(bodyRequest)
     })
         .then(response => {
-            console.log('response');
-            response.json()
+            console.log('response', response);
+            return response.json();
         })
         .then(data => {
             console.log('[SERVER] Data received after Init: ', data)
