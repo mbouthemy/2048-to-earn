@@ -51,7 +51,7 @@ const Home: NextPage = () => {
       pauseOnHover: true,
     })
     // TODO: Change the backend to return the signature of the game
-    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.web-2-to-3.com', date.toISOString(), 'game_master', 'game_master', false)
+    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '', date.toISOString(), 'game_master', 'game_master', false)
       .then(resultSignature => {
         toast.success(`The money has been transferred to your account, the signature is ${resultSignature}`, {
           autoClose: 10000,
@@ -69,7 +69,7 @@ const Home: NextPage = () => {
     console.log('You have lost!');
     setGameStatus("game_lost");
     toast.warning("Unfortunately you didn't win this type, reload the page to try again!")
-    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.web-2-to-3.com', date.toISOString(), 'game_master', 'game_master', false)
+    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '', date.toISOString(), 'game_master', 'game_master', false)
       .then(resultSignature => {
         console.log('The money has been transferred to the game master account, the signature is: ', resultSignature);
       });
@@ -133,7 +133,7 @@ const Home: NextPage = () => {
           You first need to connect a Solana wallet and wage the amount of SOL. The game is currently only available on Devnet.
       </p>
       {gameStatus === "not_started" &&
-        <Play2EarnModal gameWebsiteHost={process.env.NEXT_PUBLIC_WEBSITE_HOST || '2048-to-earn.com'}
+        <Play2EarnModal gameWebsiteHost={process.env.NEXT_PUBLIC_WEBSITE_HOST || ''}
           gameID={date.toISOString()}
           playerUID={'player1'}
           handleGameStarting={() => handleGameStarting()}
