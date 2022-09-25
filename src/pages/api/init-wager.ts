@@ -10,6 +10,7 @@ export default function initWagerHandler(
 ) {
     const bodyRequest = req.body;
     console.log('[SERVER] Request body', bodyRequest);
+    console.log('API Key', process.env.API_KEY);
     fetch(process.env.BACKEND_ENDPOINT + '/init-wager', {
         method: 'post',
         headers: { 
@@ -18,7 +19,10 @@ export default function initWagerHandler(
         },
         body: JSON.stringify(bodyRequest)
     })
-        .then(response => response.json())
+        .then(response => {
+            console.log('response');
+            response.json()
+        })
         .then(data => {
             console.log('[SERVER] Data received after Init: ', data)
             res.status(200).json(data);
