@@ -1,12 +1,18 @@
-# Getting Started with 2048
+# 2048 To Earn
 
-This game (2048) was built using **React** and **TypeScript**. The unique part of this example is animations. The animations in React aren't that straightforward, so I hope you can learn something new from it.
+This game (2048) was built using **React** and **TypeScript**.
+It used Nextjs for the backend call.
 
-**Wondering how was that built?** You can find a video tutorial on [my YouTube Channel](https://www.youtube.com/channel/UCJV16_5c4A0amyBZSI4yP6A)
+It integrates with the npm package `play2earn` and demonstrates how to transform a web2 game into a
+web3 game which introduces the betting of Solana.
+
 
 ## How To Play?
 
-You can play 2048 on [Github pages](https://mateuszsokola.github.io/2048-in-react/)
+You can play 2048 To Earn on the Vercel website deployed:
+You need a Phantom Wallet with Solana (it can be used with devnet)
+
+https://2048-to-earn.web-2-to-3.com/
 
 ## Available Scripts
 
@@ -35,3 +41,12 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+# Credits
+
+Thanks to mateuszsokola [YouTube Channel](https://www.youtube.com/channel/UCJV16_5c4A0amyBZSI4yP6A) for the original code of the 2048 game.
+
+You can find it here:
+
+(https://mateuszsokola.github.io/2048-in-react/)
