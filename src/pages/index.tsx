@@ -9,6 +9,7 @@ import { TileMeta } from "../components/Tile";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TIME_SECONDS_TO_FINISH_GAME } from "../constants";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 interface IPropsRenderer {
   hours: number;
@@ -23,6 +24,10 @@ interface IPropsRenderer {
  */
 const Home: NextPage = () => {
   const [date, setDate] = useState<Date>(new Date());
+
+  const { publicKey } = useWallet();
+
+  console.log('Public Key', publicKey);
 
   // Tell if the user is playing the game
   const [gameStatus, setGameStatus] = useState<string>("not_started");
@@ -51,7 +56,7 @@ const Home: NextPage = () => {
       pauseOnHover: true,
     })
     // TODO: Change the backend to return the signature of the game
-    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '', date.toISOString(), 'game_master', 'game_master', false)
+    finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '', date.toISOString(), 'user', publicKey.toBase58(), false)
       .then(resultSignature => {
         toast.success(`The money has been transferred to your account, the signature is ${resultSignature}`, {
           autoClose: 10000,
