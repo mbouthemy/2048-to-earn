@@ -56,6 +56,7 @@ const Home: NextPage = () => {
       pauseOnHover: true,
     })
     // TODO: Change the backend to return the signature of the game
+    //@ts-ignore
     finishGameAndGetMoneyWebThree(process.env.NEXT_PUBLIC_WEBSITE_HOST || '', date.toISOString(), 'user', publicKey.toBase58(), false)
       .then(resultSignature => {
         toast.success(`The money has been transferred to your account, the signature is ${resultSignature}`, {
