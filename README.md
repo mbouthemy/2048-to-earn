@@ -12,7 +12,8 @@ web3 game which introduces the betting of Solana.
 You can play 2048 To Earn on the Vercel website deployed:
 You need a Phantom Wallet with Solana (it can be used with devnet)
 
-https://2048-to-earn.web-2-to-3.com/
+https://game-2048-web2to3.herokuapp.com/
+
 
 ## Available Scripts
 
